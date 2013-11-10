@@ -1,0 +1,82 @@
+@include img_icon ("secure.png", ".fa-lock");
+@include img_icon ("refresh.png", ".fa-refresh");
+@include img_icon ("computer.png", ".fa-desktop");
+@include img_icon ("credentials.png", ".fa-key");
+@include img_icon ("user.png", ".fa-user");
+@include img_icon ("clipboard.png", ".fa-list");
+
+@include img_icon ("notepad.png", ".fa-list");
+@include img_icon ("new-package.png", ".fa-plus-circle");
+@include img_icon ("setting.png", ".fa-cogs");
+@include img_icon ("gear.png", ".fa-cog");
+@include img_icon ("up.png", ".fa-long-arrow-up");
+@include img_icon ("search.png", ".fa-search");
+@include img_icon ("terminal.png", ".fa-terminal");
+@include img_icon ("previous.png", ".fa-long-arrow-left");
+@include img_icon ("edit-delete.png", ".fa-trash-o");
+@include img_icon ("plugin.png", ".fa-puzzle-piece");
+@include img_icon ("monitor.png", ".fa-bar-chart-o");
+@include img_icon ("network.png", ".fa-sitemap");
+@include img_icon ("document.png", ".fa-file-text-o");
+@include img_icon ("help.png", ".fa-question-circle");
+#header { @include img_icon ("help.png", ".fa-question-circle", 1, white); }
+@include img_icon ("system-log-out.png", ".fa-power-off");
+@include img_icon ("clock.png", ".fa-clock-o");
+@include img_icon ("clock_anime.gif", ".fa-clock-o", 0.8, black, true);
+// #projectstatus { @include img_icon ("clock.png", ".fa-play-circle-o"); }
+@include img_icon ("graph.gif", ".fa-bar-chart-o");
+@include img_icon ("folder.png", ".fa-folder-open");
+@include img_icon ("dialog-warning.png", ".fa-exclamation-triangle");
+@include img_icon ("stop.png", ".fa-ban");
+
+@include img_src_icon ("plugin/translation/flags.png", ".fa-flag", 16);
+@include img_src_icon ("atom.gif", ".fa-rss", 16);
+
+
+@include img_char ("health-00to19.png", "\f10c\f10c\f10c\f10c", .6);
+@include img_char ("health-20to39.png", "\f111\f10c\f10c\f10c", .6);
+@include img_char ("health-40to59.png", "\f111\f111\f10c\f10c", .6);
+@include img_char ("health-60to79.png", "\f111\f111\f111\f10c", .6);
+@include img_char ("health-80plus.png", "\f111\f111\f111\f111", .6);
+
+@include img_char ("/health-00to19.gif", "\f10c\f10c\f10c\f10c", .6);
+@include img_char ("/health-20to39.gif", "\f111\f10c\f10c\f10c", .6);
+@include img_char ("/health-40to59.gif", "\f111\f111\f10c\f10c", .6);
+@include img_char ("/health-60to79.gif", "\f111\f111\f111\f10c", .6);
+@include img_char ("/health-80plus.gif", "\f111\f111\f111\f111", .6);
+
+@include img_gray('atom.gif');
+@include img_gray('images/24x24');
+@include img_gray('images/24x24');
+
+
+$colors: (
+    (grey,#b3b3b3),
+    (disabled,#b3b3b3),
+    (nobuilt,#b3b3b3),
+    (red,red),
+    (blue,green),
+    (yellow,orange),
+    ("/yellow",orange)
+);
+@each $c in $colors {
+    @each $size in $sizes {
+        $color: nth($c, 1);
+        $color_target: nth($c, 2);
+        img[src*="#{$size}x#{$size}/#{$color}.png"],
+        img[src*="#{$size}x#{$size}/#{$color}.gif"],
+        img[src*="#{$size}x#{$size}/#{$color}_anime.gif"] {
+            width:  #{$size*0.83}px;
+            height: #{$size*0.5}px;
+            content: ' ';
+            display: inline-block;
+            border-radius: #{$size*0.45}px;
+            margin: 2px;
+            background: #{$color_target};
+        }
+        img[src*="#{$size}x#{$size}/#{$color}_anime.gif"] {
+            -moz-animation: pulse .6s infinite alternate;
+            -webkit-animation: pulse .6s infinite alternate;
+        }
+    }
+}

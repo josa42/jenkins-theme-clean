@@ -1,0 +1,11 @@
+@-moz-keyframes pulse 
+{
+    100%  { opacity: 1; }
+      0% { opacity: .5; }
+}
+
+@-webkit-keyframes pulse 
+{
+    100%  { opacity: 1; }
+      0% { opacity: .5; }
+}

@@ -1,0 +1,57 @@
+@mixin img_src_icon($icon_src, $cls, $size, $scale: 0.8, $color: black, $animated: false) {
+    img[src*='#{$icon_src}'] {
+        content: " ";
+        margin: 0 5px !important;
+        &:before {
+            @extend #{$cls};
+            font-size: #{$size * $scale}px; 
+            width:  #{$size}px;
+            height: #{$size}px;
+            color: $color;
+            line-height: #{$size}px;
+
+            font-family: FontAwesome;
+            display: inline-block;
+            text-align: center;
+
+            @if ($animated) {
+                -webkit-animation: pulse .6s infinite alternate;
+            }
+        }
+    }
+}
+
+@mixin img_icon ($icon, $cls, $scale: 0.8, $color: black, $animated: false) {
+    @each $size in $sizes {
+        @include img_src_icon('images/#{$size}x#{$size}/#{$icon}', $cls, $size, $scale, $color, $animated);
+    }
+}
+
+@mixin img_char ($icon, $chr, $scale: 0.8, $color: black) {
+    @each $size in $sizes {
+        img[src*='images/#{$size}x#{$size}/#{$icon}'] {
+            content: " ";
+            margin: 0 5px !important;
+            &:before {
+                content: $chr;
+                font-size: #{$size * $scale}px; 
+                width:  #{$size}px;
+                height: #{$size}px;
+                color: $color;
+                line-height: #{$size}px;
+
+                font-family: FontAwesome;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@mixin img_gray ($src) {
+    img[src*='#{$src}'] {
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+    }
+}
